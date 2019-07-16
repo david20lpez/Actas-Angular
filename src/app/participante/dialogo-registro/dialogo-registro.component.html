@@ -1,0 +1,23 @@
+
+<form [formGroup]="participanteForm" (ngSubmit)="participanteForm.valid && saveParticipante()">
+  <div class="ui-g ui-fluid">
+    <div class="ui-g-12 ui-md-6">
+        <div class="ui-inputgroup">
+            <span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>
+            <input type="number" class="form-input" [(ngModel)]="participante.id" formControlName="id" pInputText placeholder="Código de Usuario">
+        </div>
+    </div>
+    <div class="ui-g-12 ui-md-6">
+      <div class="ui-inputgroup">
+          <span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>
+          <input type="text" class="form-input" [(ngModel)]="participante.nombre" formControlName="nombre" pInputText placeholder="Nombre usuario">
+      </div>
+    </div>
+    <div class="ui-g-12 ui-md-6">
+      <button pButton type="submit" [disabled]= "!participanteForm.valid" label="Guardar"></button>
+    </div>
+    <div class="ui-g-12 ui-md-6">
+      <button pButton type="button" label="Cancelar" (click)="cancelSave()"></button>
+    </div>
+  </div>
+</form>

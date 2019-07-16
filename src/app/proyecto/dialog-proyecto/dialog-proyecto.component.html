@@ -1,0 +1,22 @@
+<form [formGroup]="proyectoForm" (ngSubmit)="proyectoForm.valid">
+    <div class="ui-g ui-fluid">
+        <div class="ui-g-12 ui-md-6">
+            <div class="ui-inputgroup">
+                <span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>
+                <input type="number" class="form-input" [(ngModel)]="proyecto.id" formControlName="id" pInputText placeholder="Código de Proyecto">
+            </div>
+        </div>
+            <div class="ui-g-12 ui-md-6">
+                <div class="ui-inputgroup">
+                    <span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>
+                    <input type="text" class="form-input" [(ngModel)]="proyecto.nombre" formControlName="id" pInputText placeholder="Nombre">
+                </div>
+            </div>
+            <div class="ui-g-12 ui-md-12">
+                <div class="ui-inputgroup">
+                    <span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>
+                    <textarea pInputTextarea class="form-input" [(ngModel)]="proyecto.descripcion" formControlName="id" pInputText placeholder="Descripción"></textarea>
+                </div>
+        </div>
+    </div>
+</form>
