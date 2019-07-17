@@ -1,0 +1,45 @@
+import { Component, OnInit } from '@angular/core';
+import { DialogService, MessageService } from 'primeng/api';
+import { Message } from '@angular/compiler/src/i18n/i18n_ast';
+import { ActaService } from './acta.service';
+import { Acta } from '../model/acta';
+import { ActDialogComponent } from './act-dialog/act-dialog.component';
+
+@Component({
+  selector: 'app-acta',
+  templateUrl: './acta.component.html',
+  styleUrls: ['./acta.component.css']
+})
+export class ActaComponent implements OnInit {
+
+  public actas : Array<Acta>;
+
+  constructor(private dialogService : DialogService, private Message : MessageService,
+    private actaService : ActaService) { }
+
+  ngOnInit() {
+  }
+
+  public openDialog(): void {
+    let dialogo = this.dialogService.open(ActDialogComponent , {
+      header: 'Registro acta',
+      width: '60%',
+      data: {acta: new Acta()}
+    });
+
+    dialogo.onClose.subscribe( res => {
+      if (res != null) {
+        this.getActas();
+      }
+    });
+  }
+
+  public getActas(): void{
+    this.actaService.getActas().subscribe( res => {
+      this.actas = res;
+    },
+    err => {
+      console.log(err);
+    });
+  }
+}

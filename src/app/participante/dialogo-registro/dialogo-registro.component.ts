@@ -16,7 +16,7 @@ export class DialogoRegistroComponent implements OnInit {
   participanteForm: FormGroup;
   participante: Participante;
   constructor(private dialogRef: DynamicDialogRef, private config: DynamicDialogConfig,
-    private formBuilder: FormBuilder, private messageService: MessageService, private service: ParticipanteService) {
+    private formBuilder: FormBuilder, private service: ParticipanteService, private message : MessageService) {
     this.participante = this.config.data.participante;
    }
 
@@ -42,6 +42,8 @@ export class DialogoRegistroComponent implements OnInit {
   public saveParticipante(): void {
     this.service.saveParticipante(this.participante).subscribe( res => {
       this.dialogRef.close(new Participante());
+      this.message.add({severity: 'success', summary: 'Info', detail: 'Participante creado'});
+
     }, err => {
       console.log(err);
     });

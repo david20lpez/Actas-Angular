@@ -19,7 +19,11 @@ export class AppComponent {
         {
             label: 'Proyecto',
             url: '/proyecto'
-        }
+        },
+        {
+          label: 'Actas',
+          url: '/actas'
+      }
     ];
 }
 }

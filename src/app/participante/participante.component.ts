@@ -14,7 +14,8 @@ export class ParticipanteComponent implements OnInit {
 
   participantes: Array<Participante> = [];
 
-  constructor(private dialog: DialogService, private message: MessageService, private service: ParticipanteService) { }
+  constructor(private dialog: DialogService, private message: MessageService,
+    private service: ParticipanteService) { }
 
   ngOnInit() {
     this.getParticipantes();
@@ -29,7 +30,6 @@ export class ParticipanteComponent implements OnInit {
 
     dialogo.onClose.subscribe( res => {
       if (res != null) {
-        this.message.add({severity: 'success', summary: 'Info', detail: 'Participante creado'});
         this.getParticipantes();
       }
     });

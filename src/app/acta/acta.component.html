@@ -1,0 +1,30 @@
+<p-toast [style]="{marginTop: '80px'}"></p-toast>
+<button pButton type="button" label="Registrar acta" (click)="openDialog()"></button>
+<h3 class="first"> Actas </h3>
+
+<p-table #dt [value]="actas" [paginator]="true" [rows]="10" [globalFilterFields]="['ubicacion','idProyecto']">
+    <ng-template pTemplate="caption">
+        <div style="text-align: right">
+            <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+            <input type="text" pInputText size="50" placeholder="Filtro" (input)="dt.filterGlobal($event.target.value, 'contains')" style="width:auto">
+        </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Acta Id</th>
+            <th>Fecha</th>
+            <th>Ubicación</th>
+            <th>Contenido</th>
+            <th>Proyecto id</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-acta>
+        <tr (click)="getActas(acta)">
+            <td>{{acta.id}}</td>
+            <td>{{acta.fecha}}</td>
+            <td>{{acta.ubicacion}}</td>
+            <td>{{acta.contenido}}</td>
+            <td>{{acta.idProyecto}}</td>
+        </tr>
+    </ng-template>
+</p-table>

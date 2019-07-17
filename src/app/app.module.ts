@@ -17,6 +17,10 @@ import {MenubarModule} from 'primeng/menubar';
 import { ProyectoComponent } from './proyecto/proyecto.component';
 import {InputTextareaModule} from 'primeng/inputtextarea';
 import { DialogProyectoComponent } from './proyecto/dialog-proyecto/dialog-proyecto.component';
+import { ActaComponent } from './acta/acta.component';
+import { ActDialogComponent } from './acta/act-dialog/act-dialog.component';
+import { DropdownModule } from 'primeng/dropdown';
+
 
 @NgModule({
   declarations: [
@@ -24,7 +28,9 @@ import { DialogProyectoComponent } from './proyecto/dialog-proyecto/dialog-proye
     ParticipanteComponent,
     DialogoRegistroComponent,
     ProyectoComponent,
-    DialogProyectoComponent
+    DialogProyectoComponent,
+    ActaComponent,
+    ActDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -38,11 +44,13 @@ import { DialogProyectoComponent } from './proyecto/dialog-proyecto/dialog-proye
     ButtonModule,
     DynamicDialogModule,
     MenubarModule,
-    InputTextareaModule
+    InputTextareaModule,
+    DropdownModule
   ],
   entryComponents: [
     DialogoRegistroComponent,
-    DialogProyectoComponent
+    DialogProyectoComponent,
+    ActDialogComponent
   ],
   providers: [DialogService, MessageService],
   bootstrap: [AppComponent]

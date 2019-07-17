@@ -1,0 +1,31 @@
+<form [formGroup]="actaForm" (ngSubmit)="actaForm.valid && saveActa()">
+    <div class="ui-g ui-fluid">
+
+      <div class="ui-g-12 ui-md-6">
+        <div class="ui-inputgroup">
+          <span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>
+          <input type="text" class="form-input" [(ngModel)]="acta.ubicacion" formControlName="ubicacion" pInputText placeholder="Ubicación">
+        </div>
+      </div>
+
+      <div class="ui-g-12 ui-md-12">
+        <div class="ui-inputgroup">
+          <span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>
+          <textarea  pInputTextarea class="form-input" [(ngModel)]="acta.contenido" formControlName="contenido"
+              pInputText placeholder="Contenido"> </textarea>
+        </div>
+      </div>
+
+      <div class="ui-g-12 ui-md-12">
+        <p-dropdown [options]="proyectos" [(ngModel)]="proyecto" formControlName="idProyecto" optionLabel="nombre" placeholder="Seleccione un proyecto" > </p-dropdown>
+      </div>
+
+      <div class="ui-g-12 ui-md-6">
+          <button pButton type="submit" [disabled]= "!actaForm.valid" label="Guardar"></button>
+      </div>
+
+      <div class="ui-g-12 ui-md-6">
+        <button pButton type="button" label="Cancelar" (click)="cancelSave()"></button>
+      </div>
+    </div>
+</form>
