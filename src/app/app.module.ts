@@ -20,6 +20,10 @@ import { DialogProyectoComponent } from './proyecto/dialog-proyecto/dialog-proye
 import { ActaComponent } from './acta/acta.component';
 import { ActDialogComponent } from './acta/act-dialog/act-dialog.component';
 import { DropdownModule } from 'primeng/dropdown';
+import {ListboxModule} from 'primeng/listbox';
+import {TabViewModule} from 'primeng/tabview';
+import { CompromisoComponent } from './compromiso/compromiso.component';
+import { DialogoCompromisoComponent } from './compromiso/dialogo-compromiso/dialogo-compromiso.component';
 
 
 @NgModule({
@@ -30,13 +34,17 @@ import { DropdownModule } from 'primeng/dropdown';
     ProyectoComponent,
     DialogProyectoComponent,
     ActaComponent,
-    ActDialogComponent
+    ActDialogComponent,
+    CompromisoComponent,
+    DialogoCompromisoComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     TableModule,
+    ListboxModule,
+    TabViewModule,
     ToastModule,
     FormsModule,
     HttpClientModule,
@@ -50,7 +58,8 @@ import { DropdownModule } from 'primeng/dropdown';
   entryComponents: [
     DialogoRegistroComponent,
     DialogProyectoComponent,
-    ActDialogComponent
+    ActDialogComponent,
+    DialogoCompromisoComponent
   ],
   providers: [DialogService, MessageService],
   bootstrap: [AppComponent]

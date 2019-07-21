@@ -17,4 +17,8 @@ export class ProyectoService {
   public listarProyectos(): Observable<Array<Proyecto>>{
     return this.http.get<Array<Proyecto>>('/api/v.1/proyectos/');
   }
+
+  public getProyectoById(id : number): Observable<Proyecto> {
+    return this.http.get<Proyecto>('/api/v.1/proyectos/' + id);
+  }
 }

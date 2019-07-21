@@ -15,16 +15,16 @@
             <th>Fecha</th>
             <th>Ubicación</th>
             <th>Contenido</th>
-            <th>Proyecto id</th>
+            <th>Nombre Proyecto</th>
         </tr>
     </ng-template>
     <ng-template pTemplate="body" let-acta>
-        <tr (click)="getActas(acta)">
+        <tr>
             <td>{{acta.id}}</td>
             <td>{{acta.fecha}}</td>
             <td>{{acta.ubicacion}}</td>
             <td>{{acta.contenido}}</td>
-            <td>{{acta.idProyecto}}</td>
+            <td>{{acta.nombreProyecto}}</td>
         </tr>
     </ng-template>
 </p-table>

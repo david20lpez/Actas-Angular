@@ -23,7 +23,11 @@ export class AppComponent {
         {
           label: 'Actas',
           url: '/actas'
-      }
+        },
+        {
+          label: 'Compromisos',
+          url: '/compromisos'
+        }
     ];
 }
 }

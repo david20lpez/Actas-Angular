@@ -4,6 +4,8 @@ import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 import { ActaService } from './acta.service';
 import { Acta } from '../model/acta';
 import { ActDialogComponent } from './act-dialog/act-dialog.component';
+import { ProyectoService } from '../proyecto/proyecto.service';
+import { Proyecto } from '../model/proyecto';
 
 @Component({
   selector: 'app-acta',
@@ -15,9 +17,10 @@ export class ActaComponent implements OnInit {
   public actas : Array<Acta>;
 
   constructor(private dialogService : DialogService, private Message : MessageService,
-    private actaService : ActaService) { }
+    private actaService : ActaService, private poyectoService : ProyectoService) { }
 
   ngOnInit() {
+    this.getActas();
   }
 
   public openDialog(): void {
@@ -37,9 +40,11 @@ export class ActaComponent implements OnInit {
   public getActas(): void{
     this.actaService.getActas().subscribe( res => {
       this.actas = res;
+      console.log(res);
     },
     err => {
       console.log(err);
     });
   }
+
 }

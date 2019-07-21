@@ -1,0 +1,21 @@
+<form [formGroup]="compromisoForm" (ngSubmit)="compromisoForm.valid && saveCompromiso()">
+  <div class="ui-g ui-fluid">
+    <div class="ui-g-12 ui-md-12">
+      <div class="ui-inputgroup">
+        <span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>
+        <textarea pInputTextarea class="form-input" [(ngModel)]="compromiso.descripcion" formControlName="descripcion"
+        pInputText placeholder="Descripcion"> </textarea>
+      </div>
+    </div>
+    <div class="ui-g-12 ui-md-12">
+      <p-dropdown [options]="participantes" [(ngModel)]="responsable" optionLabel="nombre"
+      formControlName="responsable" placeholder="Seleccione un participante"></p-dropdown>
+    </div>
+    <div class="ui-g-12 ui-md-6">
+      <button pButton type="submit" [disabled]="!compromisoForm.valid" label="Agregar"></button>
+    </div>
+    <div class="ui-g-12 ui-md-6">
+      <button pButton type="button" label="Cancelar"></button>
+    </div>
+  </div>
+</form>

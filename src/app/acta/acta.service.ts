@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Acta } from '../model/acta';
+import { Participante } from '../model/participantes';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class ActaService {
   }
 
   public saveActa(acta : Acta) : Observable<Acta> {
-    debugger;
+    console.log(acta);
     return this.http.post<Acta>("/api/v.1/actas/", acta);
   }
 
