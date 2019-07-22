@@ -17,4 +17,8 @@ export class ParticipanteService {
   public getParticipantes(): Observable<Array<Participante>> {
     return this.http.get<Array<Participante>>('/api/v.1/participantes/');
   }
+
+  public getParticipante(id : number): Observable<Participante>{
+    return this.http.get<Participante>('/api/v.1/participantes/' + id);
+  }
 }

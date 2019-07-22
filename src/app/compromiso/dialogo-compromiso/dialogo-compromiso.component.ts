@@ -19,9 +19,9 @@ export class DialogoCompromisoComponent implements OnInit {
   participantes : Array<Participante>;
   acta : Acta;
 
-  constructor(private dialogConfig : DynamicDialogConfig, private dialogRef : DynamicDialogRef,
-    private messageService : MessageService, private formBuilder : FormBuilder,
-    private participanteService : ParticipanteService) {
+  constructor(private dialogConfig : DynamicDialogConfig, private dialogRef1 : DynamicDialogRef,
+      private formBuilder : FormBuilder,
+      private participanteService : ParticipanteService) {
       this.compromiso = this.dialogConfig.data.compromiso;
       this.compromiso = dialogConfig.data.compromiso;
     }
@@ -48,8 +48,7 @@ export class DialogoCompromisoComponent implements OnInit {
 
   public saveCompromiso(): void  {
     this.compromiso.idParticipante = this.responsable.id;
-    console.log(this.compromiso);
-    console.log(this.responsable);
-    this.dialogRef.close(this.compromiso);
+    console.log(this.dialogRef1);
+    this.dialogRef1.close(this.compromiso);
   }
 }

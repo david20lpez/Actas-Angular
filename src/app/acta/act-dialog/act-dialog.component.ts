@@ -19,11 +19,15 @@ import { Compromiso } from 'src/app/model/compromiso';
 export class ActDialogComponent implements OnInit {
 
   actaForm : FormGroup;
+  compromisoForm : FormGroup;
   acta : Acta;
   proyecto : Proyecto;
   proyectos : Array<Proyecto>;
   participantes : Array<Participante> = [];
   partSeleccionados : Array<Participante> = [];
+  compromiso : Compromiso;
+  descripcionComp : string;
+  responsable : Participante;
   compromisos : Array<Compromiso> = [];
 
   constructor(private dinamicDialogRef : DynamicDialogRef, private dinamicDialogConfig : DynamicDialogConfig,
@@ -34,9 +38,18 @@ export class ActDialogComponent implements OnInit {
     }
 
   ngOnInit() {
+    this.validateCompromiso();
     this.validateForm();
     this.proyectoService.listarProyectos().subscribe(
-        proyectos => this.proyectos = proyectos,
+        proyectos => {
+          this.proyectos = proyectos;
+          for (const p of proyectos) {
+            if (p.id == this.acta.idProyecto) {
+              this.proyecto = p;
+              break;
+            }
+          }
+        },
         error => console.log(error)
       );
     this.participanteService.getParticipantes().subscribe(
@@ -51,26 +64,53 @@ export class ActDialogComponent implements OnInit {
       ubicacion : [this.acta.ubicacion, [Validators.required]],
       contenido : [this.acta.contenido, [Validators.required]],
       idProyecto : [this.proyecto, [Validators.required]],
-      partSeleccionados : [this.partSeleccionados]
+      partSeleccionados : [this.partSeleccionados, [Validators.required]]
     });
   }
 
-  public cancelSave() {
+  public validateCompromiso(){
+    this.compromisoForm = this.formBuilder.group({
+      descripcionCom : [this.descripcionComp, [Validators.required]],
+      responsable : [this.responsable, [Validators.required]]
+    });
+  }
+
+  public cancelSave(): void {
+    console.log(this.dinamicDialogRef);
     this.dinamicDialogRef.close();
     this.message.add({severity : 'info', summary : 'Info', detail : 'Se canceló la creación del acta'});
   }
 
-  public saveActa() {
+  public cancelComp(): void {
+    this.compromiso = new Compromiso;
+    this.descripcionComp = null;
+    this.responsable = null;
+  }
+
+  public saveActa(): void {
     this.acta.idProyecto = this.proyecto.id;
     this.acta.participantes = this.convertParticipantes(this.partSeleccionados);
     this.acta.compromisos = this.compromisos;
     this.actaService.saveActa(this.acta).subscribe(
       res => {
+        console.log(this.dinamicDialogRef);
         this.dinamicDialogRef.close(new Acta());
         this.message.add({severity: 'success', summary: 'Info', detail: 'Acta creada'});
       },
       error => console.log(error)
     );
+  }
+
+  public addCompromiso(): void{
+    this.compromiso = new Compromiso();
+    this.compromiso.descripcion = this.descripcionComp;
+    this.compromiso.idParticipante = this.responsable.id;
+    this.compromiso.nombreParticipante = this.responsable.nombre;
+    console.log(this.compromiso);
+    this.compromisos.push(this.compromiso);
+    this.compromiso = null;
+    this.descripcionComp = null;
+    this.responsable = null;
   }
 
   public convertParticipantes(participants : Array<Participante>): Array<ParticipanteActa>{
@@ -84,17 +124,18 @@ export class ActDialogComponent implements OnInit {
     return partActs;
   }
 
-  public openDialog(): void{
-    let dialog = this.dialogService.open(DialogoCompromisoComponent, {
+  public openDialog1(): void{
+    let dialog1 = this.dialogService.open(DialogoCompromisoComponent, {
       header : 'Agregar compromiso',
       width : '40%',
       data : {compromiso : new Compromiso()}
     });
 
-    dialog.onClose.subscribe( res => {
+    dialog1.onClose.subscribe( res => {
       if(res !=null){
         this.compromisos.push(res);
       }
     }, err => console.log(err));
   }
+
 }

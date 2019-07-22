@@ -3,4 +3,5 @@ export class Compromiso{
   public descripcion : string;
   public idActa: number;
   public idParticipante: number;
+  public nombreParticipante: string;
 }

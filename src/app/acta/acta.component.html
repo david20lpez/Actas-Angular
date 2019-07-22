@@ -21,7 +21,7 @@
     <ng-template pTemplate="body" let-acta>
         <tr>
             <td>{{acta.id}}</td>
-            <td>{{acta.fecha}}</td>
+            <td>{{acta.fecha | date: 'd/MM/yyyy'}}</td>
             <td>{{acta.ubicacion}}</td>
             <td>{{acta.contenido}}</td>
             <td>{{acta.nombreProyecto}}</td>

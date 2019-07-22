@@ -24,6 +24,7 @@ import {ListboxModule} from 'primeng/listbox';
 import {TabViewModule} from 'primeng/tabview';
 import { CompromisoComponent } from './compromiso/compromiso.component';
 import { DialogoCompromisoComponent } from './compromiso/dialogo-compromiso/dialogo-compromiso.component';
+import {CalendarModule} from 'primeng/calendar';
 
 
 @NgModule({
@@ -53,7 +54,8 @@ import { DialogoCompromisoComponent } from './compromiso/dialogo-compromiso/dial
     DynamicDialogModule,
     MenubarModule,
     InputTextareaModule,
-    DropdownModule
+    DropdownModule,
+    CalendarModule
   ],
   entryComponents: [
     DialogoRegistroComponent,

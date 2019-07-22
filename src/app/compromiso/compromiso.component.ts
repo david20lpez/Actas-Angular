@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DialogService } from 'primeng/api';
+import { CompromisoService } from './compromiso.service';
+import { Compromiso } from '../model/compromiso';
 
 @Component({
   selector: 'app-compromiso',
@@ -8,9 +10,17 @@ import { DialogService } from 'primeng/api';
 })
 export class CompromisoComponent implements OnInit {
 
-  constructor() { }
+  compromisos : Array<Compromiso> = [];
+  constructor(private compromisoService : CompromisoService) { }
 
   ngOnInit() {
+    this.getCompromisos();
+  }
+
+  public getCompromisos(): void{
+    this.compromisoService.getCompromisos().subscribe( res => {
+      this.compromisos = res;
+    }, err => console.log(err));
   }
 
 }

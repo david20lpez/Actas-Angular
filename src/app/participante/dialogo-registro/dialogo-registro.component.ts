@@ -40,12 +40,20 @@ export class DialogoRegistroComponent implements OnInit {
   }
 
   public saveParticipante(): void {
-    this.service.saveParticipante(this.participante).subscribe( res => {
-      this.dialogRef.close(new Participante());
-      this.message.add({severity: 'success', summary: 'Info', detail: 'Participante creado'});
+    this.service.getParticipante(this.participante.id).subscribe(res => {
+      if(res != null){
+        console.log(res);
+        this.message.add({severity : 'warn', summary: 'Advertencia', detail: 'El id ya existe'});
+        this.participante.id = null;
+      }
 
     }, err => {
-      console.log(err);
+      this.service.saveParticipante(this.participante).subscribe( res => {
+        this.dialogRef.close(new Participante());
+        this.message.add({severity: 'success', summary: 'Info', detail: 'Participante creado'});
+      }, err => {
+        console.log(err);
+      });
     });
   }
 }

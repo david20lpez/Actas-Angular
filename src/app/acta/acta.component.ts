@@ -16,17 +16,16 @@ export class ActaComponent implements OnInit {
 
   public actas : Array<Acta>;
 
-  constructor(private dialogService : DialogService, private Message : MessageService,
-    private actaService : ActaService, private poyectoService : ProyectoService) { }
+  constructor(private dialogService : DialogService, private actaService : ActaService) { }
 
   ngOnInit() {
     this.getActas();
   }
 
   public openDialog(): void {
-    let dialogo = this.dialogService.open(ActDialogComponent , {
+      let dialogo = this.dialogService.open(ActDialogComponent , {
       header: 'Registro acta',
-      width: '60%',
+      width: '70%',
       data: {acta: new Acta()}
     });
 
@@ -44,6 +43,14 @@ export class ActaComponent implements OnInit {
     },
     err => {
       console.log(err);
+    });
+  }
+
+  public selectActa(actaK : Acta): void{
+    let dialogo = this.dialogService.open(ActDialogComponent, {
+      header: 'Edición elemento',
+      width: '70%',
+      data: {acta: actaK}
     });
   }
 
